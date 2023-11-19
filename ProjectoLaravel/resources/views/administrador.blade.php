@@ -5,7 +5,7 @@
 @section('main-vista')
     <h1>{{ $user }}</h1>
     <div class="cerrar-admin">
-        <a href="{{ url('inicio') }}" class="btn-default-3" >Cerrar Sesion</a>
+        <a href="{{ url('') }}" class="btn-default-3" >Cerrar Sesion</a>
     </div>
     
 @stop

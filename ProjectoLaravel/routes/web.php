@@ -16,7 +16,7 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/inicio', function () {
+Route::get('/', function () {
     return view('index');
 });
 

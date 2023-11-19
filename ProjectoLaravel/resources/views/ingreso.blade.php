@@ -36,7 +36,7 @@
 
             <div class="button-login">
                 <button type="submit" class="btn-default-3">Iniciar</button>
-                <a href=" {{ url('inicio') }} " class="btn-default-3">Volver</a>
+                <a href=" {{ url('') }} " class="btn-default-3">Volver</a>
             </div>
 
             @if ($errors->any())

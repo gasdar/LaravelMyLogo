@@ -20,7 +20,7 @@
 
             <div class="nav-master">
                 <nav class="contenedor">
-                    <a href="../inicio">Home</a>
+                    <a href="../">Home</a>
                     <a href="../productos">Productos</a>
                     <a href="../ingreso">Login</a>
                 </nav>
