@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
-    public function inProducto(){
-        return view('productos');
-    }
+
+    
 
 }

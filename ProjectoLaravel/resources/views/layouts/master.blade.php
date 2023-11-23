@@ -20,9 +20,9 @@
 
             <div class="nav-master">
                 <nav class="contenedor">
-                    <a href="../">Home</a>
-                    <a href="../productos">Productos</a>
-                    <a href="../ingreso">Login</a>
+                    <a href="{{ url('index') }}">Home</a>
+                    <a href="{{ url('index/productos') }}">Productos</a>
+                    <a href="{{ url('login/ingreso') }}">Login</a>
                 </nav>
             </div>
         </header>

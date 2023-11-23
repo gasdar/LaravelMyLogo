@@ -448,6 +448,10 @@ a {
     padding: 2.5rem 0;
 }
 
+.error-login ul{
+    margin: 0;
+}
+
 @media (min-width: 480px) {
     .form-login {
         min-width: 35rem;
@@ -484,21 +488,6 @@ a {
         font-size: 2rem;
         border-radius: 10%;
     }
-}
-
-/* AJUSTES DE: ADMINISTRADOR */
-.body-admin {
-    background-color: #3b3e4a;
-}
-
-.cerrar-admin {
-    display: flex;
-    justify-content: center;
-}
-
-.error-login {
-    padding-bottom: 0;
-    margin-bottom: 2rem;
 }
 
 /* MEADIAS QUERIES GENERALES */

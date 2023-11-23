@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\InicioController;
 use App\Http\Controllers\FormularioController;
 use App\Http\Controllers\LoginController;
 
@@ -16,17 +16,14 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/index', [InicioController::class, 'inicio'])->name('index');
+Route::get('/index/productos', [InicioController::class, 'inicioProductos'])->name('index.productos');
+Route::post('/index/agradecimiento', [InicioController::class, 'inicioFormulario'])->name('index.agradecimiento');
 
-Route::get('/productos', [ProductoController::class, 'inProducto'])->name('product-view');
+Route::get('/login/ingreso', [LoginController::class, 'loginIngreso'])->name('login.ingreso');
+Route::post('/login/verificar', [LoginController::class, 'loginVerificar'])->name('login.verificar');
 
-Route::get('/ingreso', [LoginController::class, 'ingresoLogin'])->name('login');
 
-Route::post('/ingreso/verificar', [LoginController::class, 'verificarIngreso'])->name('verificar');
-
-Route::post('/productos/agradecimiento', [FormularioController::class, 'formInicio'])->name('agradecimiento');
 
 
 
