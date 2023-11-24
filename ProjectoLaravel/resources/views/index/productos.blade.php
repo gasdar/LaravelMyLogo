@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('tittle', 'Vista - Productos')
+@section('title', 'Vista - Productos')
 
 @section('main-vista')
 

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\FormularioController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SucursalesController;
+use App\Http\Controllers\CategoriasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +25,17 @@ Route::post('/index/agradecimiento', [InicioController::class, 'inicioFormulario
 Route::get('/login/ingreso', [LoginController::class, 'loginIngreso'])->name('login.ingreso');
 Route::post('/login/verificar', [LoginController::class, 'loginVerificar'])->name('login.verificar');
 
+// Ruta para productos
 
+// Ruta para sucursales
+Route::resource('/sucursales', 'App\Http\Controllers\SucursalesController');
+Route::get('/sucursales/realizar/busqueda', [SucursalesController::class, 'realizarBusqueda'])->name('sucursales.realizar.busqueda');
+Route::post('/sucursales/verificar/busqueda', [SucursalesController::class, 'verificarBusqueda'])->name('sucursales.verificar.busqueda');
 
+// Ruta para categorias
+Route::resource('/categorias', 'App\Http\Controllers\CategoriasController');
+Route::get('/categorias/realizar/busqueda', [CategoriasController::class, 'realizarBusqueda'])->name('categorias.realizar.busqueda');
+Route::post('/categorias/verificar/busqueda', [CategoriasController::class, 'verificarBusqueda'])->name('categorias.verificar.busqueda');
 
 
 

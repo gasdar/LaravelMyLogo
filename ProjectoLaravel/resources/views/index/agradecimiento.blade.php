@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('tittle', 'Vista de Agradecimiento')
+@section('title', 'Vista de Agradecimiento')
 
 @section('main-vista')
     <div class="main-agradecimiento" >

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('tittle', 'Vista - Home')
+@section('title', 'Vista - Home')
 
 @section('main-vista')
     <h2 class="titulo-cat">Categorías de Productos</h2>
