@@ -12,7 +12,8 @@
                 <a href="{{ url('sucursales') }}" class="admin__link">Listados de Sucursales</a>
                 <a href="{{ url('sucursales/create')}}" class="admin__link">Nueva Sucursal</a>
                 <a href="{{ url('sucursales/realizar/busqueda') }}" class="admin__link">Buscar Sucursal</a>
-                <a href="#" class="admin__link">Crear Relación</a>
+                <a href="{{ url('relaciones/producto/sucursal') }}" class="admin__link">Listado Sucursal & Productos</a>
+                <a href="{{ url('relaciones/crear/prodSuc') }}" class="admin__link">Crear Relación con Productos</a>
             </nav>
         </aside>
 

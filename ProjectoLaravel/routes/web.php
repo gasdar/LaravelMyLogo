@@ -6,6 +6,7 @@ use App\Http\Controllers\FormularioController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SucursalesController;
 use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\RelacionesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,14 @@ Route::post('/sucursales/verificar/busqueda', [SucursalesController::class, 'ver
 Route::resource('/categorias', 'App\Http\Controllers\CategoriasController');
 Route::get('/categorias/realizar/busqueda', [CategoriasController::class, 'realizarBusqueda'])->name('categorias.realizar.busqueda');
 Route::post('/categorias/verificar/busqueda', [CategoriasController::class, 'verificarBusqueda'])->name('categorias.verificar.busqueda');
+
+// Ruta relación sucursal & producto
+Route::get('/relaciones/producto/sucursal', [RelacionesController::class, 'prodSuc'])->name('relaciones.producto.sucursal');
+Route::get('/relaciones/crear/prodSuc', [RelacionesController::class, 'crearProdSuc'])->name('relaciones.crear.prodSuc');
+Route::post('/relaciones/verificar/prodSuc', [RelacionesController::class, 'verificarProdSuc'])->name('relaciones.verificar.prodSuc');
+Route::get('/relaciones/producto/categoria', [RelacionesController::class, 'prodCat'])->name('relaciones.producto.categoria');
+Route::get('/relaciones/crear/prodCat', [RelacionesController::class, 'crearProdCat'])->name('relaciones.crear.prodCat');
+Route::post('/relaciones/verificar/prodCat', [RelacionesController::class, 'verificarProdCat'])->name('relaciones.verificar.prodCat');
 
 
 

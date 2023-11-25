@@ -12,7 +12,8 @@
                 <a href="{{ url('categorias') }}" class="admin__link">Listados de Categorías</a>
                 <a href="{{ url('categorias/create') }}" class="admin__link">Nueva Categoría</a>
                 <a href="{{ url('categorias/realizar/busqueda') }}" class="admin__link">Buscar Categoría</a>
-                <a href="#" class="admin__link">Crear Relación</a>
+                <a href="{{ url('relaciones/producto/categoria') }}" class="admin__link">Listado Categoría & Productos</a>
+                <a href="{{ url('relaciones/crear/prodCat') }}" class="admin__link">Crear Relación con Productos</a>
             </nav>
         </aside>
 

@@ -17,11 +17,11 @@ class Prod_Suc extends Model
 
     // Relaciones de (n:1)
     public function producto() {
-        return $this->belongsTo(Producto::class, "Prod_Id");
+        return $this->belongsTo(Producto::class, "ProdId");
     }
 
     public function sucursal() {
-        return $this->belongsTo(Sucursal::class, "Suc_Id");
+        return $this->belongsTo(Sucursal::class, "SucId");
     }
 
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sucursal;
+use App\Models\Producto;
 
 class SucursalesController extends Controller
 {
@@ -49,7 +50,7 @@ class SucursalesController extends Controller
 
             if($sucursales->isEmpty()){
                 $mensaje = "Sucursal no encontrada";
-                return redirect()->route('sucursales.realizar.busqueda')->withErrors(['errorArreglo' => $mensaje]);
+                return redirect()->route('sucursales.realizar.busqueda')->withErrors(['errorArreglo' => $mensaje])->withInput();
             } else {
                 return view('sucursales.resultadoBusqueda', ['sucursales' => $sucursales]);
             }
@@ -61,13 +62,12 @@ class SucursalesController extends Controller
 
             if($sucursales->isEmpty()){
                 $mensaje = "Sucursal no encontrada";
-                return redirect()->route('sucursales.realizar.busqueda')->withErrors(['errorArreglo' => $mensaje]);
+                return redirect()->route('sucursales.realizar.busqueda')->withErrors(['errorArreglo' => $mensaje])->withInput();
             } else {
                 return view('sucursales.resultadoBusqueda', ['sucursales' => $sucursales]);
             }
         }
 
     }
-
 
 } // Fin de Clase

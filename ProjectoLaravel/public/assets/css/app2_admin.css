@@ -345,3 +345,10 @@ img {
 .solicitud__lista {
     margin: 0;
 }
+
+/* INICIO */
+.inicio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

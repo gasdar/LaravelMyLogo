@@ -20,13 +20,13 @@
             @csrf
 
             <div class="login-name">
-                <label for="u-nombre" class="form-label">Nombre de usuario: </label>
-                <input type="text" class="form-control" name="u-nombre" id="u-nombre" value="{{ old('u-nombre') }}">
+                <label for="nombre" class="form-label">Nombre de usuario: </label>
+                <input type="text" class="form-control" name="nombre" id="nombre" value="{{ old('nombre') }}">
             </div>
             <div class="login-contrasena">
-                <label for="u-contrasena" class="form-label">Contraseña: </label>
-                <input type="password" class="form-control" name="u-contrasena" id="u-contrasena"
-                    value="{{ old('u-contrasena') }}">
+                <label for="contrasena" class="form-label">Contraseña: </label>
+                <input type="password" class="form-control" name="contrasena" id="contrasena"
+                    value="{{ old('contrasena') }}">
             </div>
 
             <div class="button-login">

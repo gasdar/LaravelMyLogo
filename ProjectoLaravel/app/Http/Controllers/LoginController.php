@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Administrador;
 
 class LoginController extends Controller
 {
@@ -12,20 +13,16 @@ class LoginController extends Controller
     }
 
     public function loginVerificar(Request $request){
-        
-        $userDB = "Rolando";
-        $passwordDB = "12345";
 
         $this->validate($request, [
-            "u-nombre" => "required",
-            "u-contrasena" => "required"
+            "nombre" => "required|max:50",
+            "contrasena" => "required|max:50"
         ]);
 
-        $user = $request->input('u-nombre');
-        $password = $request->input('u-contrasena');
+        $administrador = Administrador::where('Admin_Nombre', $request->nombre)->where('Admin_Password', $request->contrasena)->first();
 
-        if($userDB == $user && $passwordDB == $password){
-            return view('login.administrador')->with('user', $user);
+        if($administrador){
+            return view('login.administrador')->with('administrador', $administrador);
         } else{
             return redirect()->route('login.ingreso')->withErrors(['error' => 'Usuario o contraseña incorrecta']);
         }

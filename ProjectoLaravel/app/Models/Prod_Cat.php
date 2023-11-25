@@ -17,11 +17,11 @@ class Prod_Cat extends Model
 
     // Relaciones de (n:1)
     public function producto() {
-        return $this->belongsTo(Producto::class, "Prod_Id");
+        return $this->belongsTo(Producto::class, "ProdId");
     }
 
     public function categoria() {
-        return $this->belongsTo(Categoria::class, "Cat_Id");
+        return $this->belongsTo(Categoria::class, "CatId");
     }
 
 
