@@ -7,7 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SucursalesController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\RelacionesController;
-
+use App\Http\Controllers\ProductosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +27,9 @@ Route::get('/login/ingreso', [LoginController::class, 'loginIngreso'])->name('lo
 Route::post('/login/verificar', [LoginController::class, 'loginVerificar'])->name('login.verificar');
 
 // Ruta para productos
+Route::resource('/productos', 'App\Http\Controllers\ProductosController');
+Route::get('/productos/realizar/busqueda', [ProductosController::class, 'realizarBusqueda'])->name('productos.realizar.busqueda');
+Route::post('/productos/verificar/busqueda', [ProductosController::class, 'verificarBusqueda'])->name('productos.verificar.busqueda');                               
 
 // Ruta para sucursales
 Route::resource('/sucursales', 'App\Http\Controllers\SucursalesController');

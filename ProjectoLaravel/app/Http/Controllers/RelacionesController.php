@@ -77,14 +77,14 @@ class RelacionesController extends Controller
             if($prodCat) {
                 return redirect()->route('relaciones.crear.prodCat')->withErrors(['Registro Existente' => 'Ya existe el registro.'])->withInput();
             } else {
-                dd($producto->Prod_Nombre);
+                
                 $nuevoRegistro = new Prod_Cat();
                 $nuevoRegistro->CatId = $request->codigoCat;
                 $nuevoRegistro->ProdId = $request->codigoProd;
                 $nuevoRegistro->save();
 
                 $prodCat = Prod_Cat::get()->load('categoria')->load('producto');
-                return view('relaciones.productoCategoria');
+                return view('relaciones.productoCategoria')->with('prodCat', $prodCat);
             }
         
         } else {

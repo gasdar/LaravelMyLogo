@@ -22,7 +22,7 @@
 
                 <nav class="header-navegacion">
                     <a href="{{ url('sucursales') }}" class="link">Sucursales</a>
-                    <a href="#" class="link">Productos</a>
+                    <a href="{{ url('productos') }}" class="link">Productos</a>
                     <a href="{{ url('categorias') }}" class="link">Categorías</a>
                     <a href="{{ url('index') }}" class="link">Salir</a>
                 </nav>
@@ -53,7 +53,7 @@
 
                 <nav class="header-navegacion">
                     <a href="{{ url('sucursales') }}" class="link">Sucursales</a>
-                    <a href="#" class="link">Productos</a>
+                    <a href="{{ url('productos') }}" class="link">Productos</a>
                     <a href="{{ url('categorias') }}" class="link">Categorías</a>
                     <a href="{{ url('index') }}" class="link">Salir</a>
                 </nav>
