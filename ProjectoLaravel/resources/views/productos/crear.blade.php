@@ -14,7 +14,7 @@
                 <a href="{{ url('productos/realizar/busqueda') }}" class="admin__link">Buscar Productos</a>
                 <a href="{{ url('relaciones/producto/sucursal') }}" class="admin__link">Listado Sucursal & Productos</a>
                 <a href="{{ url('relaciones/producto/categoria') }}" class="admin__link">Listado Categorias & Productos</a>
-                <a href="{{ url('relaciones/crear/prodSuc') }}" class="admin__link">Crear Relación con Sucursales & Productos</a>
+                <a href="{{ url('relaciones/crear/prodSuc') }}" class="admin__link">Crear Relación Sucursales & Productos</a>
                 <a href="{{ url('relaciones/crear/prodCat') }}" class="admin__link">Crear Relación Categorias & Productos</a>
                 
             </nav>

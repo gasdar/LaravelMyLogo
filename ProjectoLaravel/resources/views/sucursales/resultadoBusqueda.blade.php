@@ -20,7 +20,7 @@
         <div class="listado">
 
             <div class="listado__heading">
-                <h2 class="listado__header text-center">Búsqueda Resultado</h2>
+                <h2 class="listado__header text-center">Búsqueda Resultado: Sucursal</h2>
             </div>
 
             <div class="listado__contenido">

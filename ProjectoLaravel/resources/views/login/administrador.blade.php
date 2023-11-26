@@ -10,7 +10,7 @@
 
             <nav class="admin__navegacion">
                 <a href="{{ url('sucursales') }}" class="admin__link">Sucursales</a>
-                <a href="{{ url('#')}}" class="admin__link">Productos</a>
+                <a href="{{ url('productos')}}" class="admin__link">Productos</a>
                 <a href="{{ url('categorias') }}" class="admin__link">Categorias</a>
                 <a href="{{ url('relaciones/producto/sucursal') }}" class="admin__link">Relaciones</a>
                 <a href="{{ url('index') }}" class="admin__link">Cerrar Sesión</a>

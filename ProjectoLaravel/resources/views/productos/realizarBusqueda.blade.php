@@ -14,7 +14,7 @@
                 <a href="{{ url('productos/realizar/busqueda') }}" class="admin__link">Buscar Productos</a>
                 <a href="{{ url('relaciones/producto/sucursal') }}" class="admin__link">Listado Sucursal & Productos</a>
                 <a href="{{ url('relaciones/producto/categoria') }}" class="admin__link">Listado Categorias & Productos</a>
-                <a href="{{ url('relaciones/crear/prodSuc') }}" class="admin__link">Crear Relación con Sucursales & Productos</a>
+                <a href="{{ url('relaciones/crear/prodSuc') }}" class="admin__link">Crear Relación Sucursales & Productos</a>
                 <a href="{{ url('relaciones/crear/prodCat') }}" class="admin__link">Crear Relación Categorias & Productos</a>
                 
             </nav>
@@ -32,11 +32,11 @@
                 </div>
                 <div class="solicitud__campo">
                     <label for="nombre" class="solicitud__label form-label">Nombre:</label>
-                    <input type="text" class="solicitud__input form-control" id="region" name="nombre" value="{{ old('nombre') }}">
+                    <input type="text" class="solicitud__input form-control" id="nombre" name="nombre" value="{{ old('nombre') }}">
                 </div>
                 <div class="solicitud__campo">
-                    <label for="codigosuc" class="solicitud__label form-label">Codigo de Sucursal:</label>
-                    <input type="text" class="solicitud__input form-control" id="codigosuc" name="codigosuc" value="{{ old('codigosuc') }}">
+                    <label for="codigoSuc" class="solicitud__label form-label">Codigo de Sucursal:</label>
+                    <input type="number" class="solicitud__input form-control" id="codigoSuc" name="codigoSuc" value="{{ old('codigoSuc') }}">
                 </div>
                 <div class="solicitud__boton">
                     <button type="submit" class="solicitud__btn">Buscar</button>

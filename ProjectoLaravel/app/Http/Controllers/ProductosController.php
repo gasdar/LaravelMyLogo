@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Producto;
-
-
+use App\Models\Prod_Suc;
 
 class ProductosController extends Controller
 {
@@ -18,9 +17,7 @@ class ProductosController extends Controller
     
 
     public function create(){
-
         return view('productos.crear');
-
     }
 
     public function store(Request $request){
@@ -45,7 +42,6 @@ class ProductosController extends Controller
 
     public function realizarBusqueda(){
         return view('productos.realizarBusqueda');
-        
     }
 
 
@@ -53,30 +49,57 @@ class ProductosController extends Controller
 
         $this->validate($request, [
             'codigo' => 'required|integer|min:1',
-            'nombre' => 'max:50',
-            'codigosuc'=> 'integer|min:1'
+            'nombre' => 'max:50'
         ]);
 
-        if(empty($request->region)){
-            $sucursales = Sucursal::where('Suc_Id', '=', $request->codigo)->get();
+        if(!empty($request->codigoSuc)){
+            if($request->codigoSuc < 1){
+                return redirect()->route('productos.realizar.busqueda')->withErrors(['Error#Sucursal' => 'El código de sucursal debe ser mayor a 0'])->withInput();
+            }
+        }
 
-            if($sucursales->isEmpty()){
-                $mensaje = "Sucursal no encontrada";
-                return redirect()->route('sucursales.realizar.busqueda')->withErrors(['errorArreglo' => $mensaje])->withInput();
+        if(empty($request->nombre) && empty($request->codigoSuc)){
+            $productos = Producto::where('Prod_Id', "=", $request->codigo)->get();
+
+            if($productos->isEmpty()) {
+                return redirect()->route('productos.realizar.busqueda')->withErrors(['Error' => 'Producto no encontrado'])->withInput();
             } else {
-                return view('sucursales.resultadoBusqueda', ['sucursales' => $sucursales]);
+                return view('productos.resultadoBusqueda', ['productos' => $productos]);
             }
 
-        } else {
-            $sucursales = Sucursal::where('Suc_Id', '=', $request->codigo)
-                            ->where('Suc_Region', '=', $request->region)
-                            ->get();
-
-            if($sucursales->isEmpty()){
-                $mensaje = "Sucursal no encontrada";
-                return redirect()->route('sucursales.realizar.busqueda')->withErrors(['errorArreglo' => $mensaje])->withInput();
+        } else if(empty($request->codigoSuc)) {
+            $productos = Producto::where('Prod_Id', $request->codigo)
+                                ->where('Prod_Nombre', $request->nombre)
+                                ->get();
+            if($productos->isEmpty()) {
+                return redirect()->route('productos.realizar.busqueda')->withErrors(['Error' => 'Producto no encontrado'])->withInput();
             } else {
-                return view('sucursales.resultadoBusqueda', ['sucursales' => $sucursales]);
+                return view('productos.resultadoBusqueda', ['productos' => $productos]);
+            }
+        } else if(empty($request->nombre)) {
+            $prodSuc = Prod_Suc::with(['producto', 'sucursal'])
+            ->where('ProdId', $request->codigo)
+            ->where('SucId', $request->codigoSuc)
+            ->get();
+
+            if($prodSuc->isEmpty()) {
+                return redirect()->route('productos.realizar.busqueda')->withErrors(['Error' => 'Producto no encontrado'])->withInput();
+            } else {
+                return view('productos.resultadoBusqueda2', ['prodSuc' => $prodSuc]);
+            }
+        } else {
+            $prodSuc = Prod_Suc::with(['producto', 'sucursal'])
+            ->where('SucId', $request->codigoSuc)
+            ->whereHas('producto', function ($query) use ($request) {
+                $query->where('Prod_Id', $request->codigo);
+                $query->where('Prod_Nombre', $request->nombre);
+            })
+            ->get();
+
+            if($prodSuc->isEmpty()) {
+                return redirect()->route('productos.realizar.busqueda')->withErrors(['Error' => 'Producto no encontrado'])->withInput();
+            } else {
+                return view('productos.resultadoBusqueda2', ['prodSuc' => $prodSuc]);
             }
         }
 

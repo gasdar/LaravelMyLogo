@@ -1,6 +1,6 @@
 @extends('layouts.master-admin')
 
-@section('title', 'Productos Listado')
+@section('title', 'Producto Resultado')
 
 @section('main-vista')
     <main class="admin">
@@ -23,7 +23,7 @@
         <div class="listado">
 
             <div class="listado__heading">
-                <h2 class="listado__header text-center">Registros de Productos</h2>
+                <h2 class="listado__header text-center">Búsqueda Resultado: Producto</h2>
             </div>
 
             <div class="listado__contenido">
@@ -34,16 +34,21 @@
                             <th>Nombre</th>
                             <th>Descripción</th>
                             <th>Precio</th>
+                            <th>Sucursal Relacionada</th>
+                            <th>Stock</th>
+                            {{-- <th>Sucursal</th> --}}
                             <th>Ajustes<i class="listado__wrench fa fa-wrench"></i></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($productos as $producto)
+                        @foreach($prodSuc as $relacion)
                         <tr>
-                            <td>{{ $producto->Prod_Id }}</td>
-                            <td>{{ $producto->Prod_Nombre }}</td>
-                            <td>{{ $producto->Prod_Descripcion }}</td>
-                            <td>{{ $producto->Prod_Precio }}</td>
+                            <td>{{ $relacion->producto->Prod_Id }}</td>
+                            <td>{{ $relacion->producto->Prod_Nombre }}</td>
+                            <td>{{ $relacion->producto->Prod_Descripcion }}</td>
+                            <td>{{ $relacion->producto->Prod_Precio }}</td>
+                            <td>{{ $relacion->sucursal->Suc_Region }}, {{ $relacion->sucursal->Suc_Direccion }} (código: {{ $relacion->sucursal->Suc_Id }})</td>
+                            <td>{{ $relacion->Stock }}</td>
                             <td>
                                 <div class="listado__iconos">
                                     <a href="#" class="listado__enlace"><i class="listado__edicion fa fa-pencil-alt"></i></a>
