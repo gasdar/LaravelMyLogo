@@ -22,28 +22,29 @@
 
         <div class="solicitud">
 
-            <h2 class="solicitud__heading text-center degradado-admin">Crear Producto</h2>
+            <h2 class="solicitud__heading text-center degradado-admin">Actualizar Producto</h2>
 
-            <form action="{{ url('productos') }}" method="post" class="solicitud__formulario">
+            <form action="{{ url('productos/' . $producto->Prod_Id) }}" method="post" class="solicitud__formulario">
+                @method('PUT')
                 @csrf
                 <div class="solicitud__campo">
                     <label for="nombre" class="solicitud__label form-label">Nombre:</label>
-                    <input type="text" class="solicitud__input form-control" id="nombre" name="nombre" value="{{ old('nombre') }}">
+                    <input type="text" class="solicitud__input form-control" id="nombre" name="nombre" value="{{ $producto->Prod_Nombre}}">
                 </div>
                 <div class="solicitud__campo">
                     <label for="descripcion" class="solicitud__label form-label">Descripción:</label>
-                    <input type="text" class="solicitud__input form-control" id="descripcion" name="descripcion" value="{{ old('descripcion') }}">
+                    <input type="text" class="solicitud__input form-control" id="descripcion" name="descripcion" value="{{$producto->Prod_Descripcion}}">
                 </div>
                 <div class="solicitud__campo">
                     <label for="precio" class="solicitud__label form-label">Precio:</label>
-                    <input type="number" class="solicitud__input form-control" id="precio" name="precio" value="{{ old('precio') }}">
+                    <input type="number" class="solicitud__input form-control" id="precio" name="precio" value="{{$producto->Prod_Precio}}">
                 </div>
                 <div class="solicitud__campo">
                     <label for="estado" class="solicitud__label form-label">Estado:</label>
-                    <input type="number" class="solicitud__input form-control" id="estado" name="estado" value="{{ old('estado') }}">
+                    <input type="number" class="solicitud__input form-control" id="estado" name="estado" value="{{ $producto->Prod_Estado}}">
                 </div>
                 <div class="solicitud__boton">
-                    <button type="submit" class="solicitud__btn">Registrar Producto</button>
+                    <button type="submit" class="solicitud__btn">Actualizar Producto</button>
                 </div>
 
                 @if($errors->any())

@@ -48,7 +48,7 @@
                             <td>{{ $producto->Prod_Estado }}</td>
                             <td>
                                 <div class="listado__iconos">
-                                    <a href="#" class="listado__enlace"><i class="listado__edicion fa fa-pencil-alt"></i></a>
+                                    <a href={{ url("productos/" . $producto->Prod_Id . "/edit")}} class="listado__enlace"><i class="listado__edicion fa fa-pencil-alt"></i></a>
                                     <a href="#" class="listado__enlace listado__enlace--modificador"><i class="listado__edicion fa fa-trash"></i></a>
                                 </div>
                             </td>

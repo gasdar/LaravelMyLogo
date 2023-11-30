@@ -25,14 +25,15 @@ class ProductosController extends Controller
         $this->validate($request, [
             'nombre' => 'required|min:3|max:50',
             'descripcion' => 'required|min:3|max:50',
-            'precio' => 'required|integer|min:1'
-            
+            'precio' => 'required|integer|min:1',
+            'estado' => 'required|integer|min:1'
         ]);
 
         $producto = new Producto();
         $producto->Prod_Nombre = $request->nombre;
         $producto->Prod_Descripcion = $request->descripcion;
         $producto->Prod_Precio = $request->precio;
+        $producto->Prod_Estado = $request->estado;
         $producto->save();
 
         $productos = Producto::get();
@@ -105,5 +106,23 @@ class ProductosController extends Controller
 
     }
 
+    public function edit($productos){
+        $producto = Producto::find($productos); 
+        return view("productos.editar", ["producto" => $producto]);
+    }
+
+    public function update($producto, Request $request){
+
+        Producto::where('Prod_Id' , $producto)->
+        update([ 
+            'Prod_Nombre' => $request->nombre,
+            'Prod_Descripcion' => $request->descripcion,
+            'Prod_Precio'=> $request->precio,
+            'Prod_Estado'=> $request->estado
+
+        ]);
+        $productos = Producto::get();
+        return view('productos.listado')->with('productos', $productos);
+    }
 
 }
