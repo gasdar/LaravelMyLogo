@@ -26,6 +26,7 @@ class RelacionesController extends Controller
         $this->validate($request, [
             'codigoSuc' => 'required|integer|min:1',
             'codigoProd' => 'required|integer|min:1',
+            'codigoEstado' => 'required|integer|min:1|max:2',
             'stock' => 'required|integer|min:1'
         ]);
 
@@ -35,11 +36,12 @@ class RelacionesController extends Controller
         if($sucursal && $producto){
             $prodSuc = Prod_Suc::where('SucId', $request->codigoSuc)->where('ProdId', $request->codigoProd)->first();
             if($prodSuc){
-                return redirect()->route('relaciones.crear.prodSuc')->withErrors(['Registro Existente' => 'Ya existe el registro.'])->withInput();
+                return redirect()->route('relaciones.crear.prodSuc')->withErrors(['Existente' => 'Ya existe el registro.'])->withInput();
             } else{
                 $nuevoRegistro = new Prod_Suc();
                 $nuevoRegistro->SucId = $request->codigoSuc;
                 $nuevoRegistro->ProdId = $request->codigoProd;
+                $nuevoRegistro->EstadoId = $request->codigoEstado;
                 $nuevoRegistro->Stock = $request->stock;
                 $nuevoRegistro->save();
 
@@ -47,7 +49,7 @@ class RelacionesController extends Controller
                 return view('relaciones.productoSucursal', ["prodSuc" => $prodSuc]);
             }
         } else {
-            return redirect()->route('relaciones.crear.prodSuc')->withErrors(['No Encontrado' => 'Sucursal o Producto, no encontrado.'])->withInput();
+            return redirect()->route('relaciones.crear.prodSuc')->withErrors(['NoEncontrado' => 'Sucursal o Producto, no encontrado.'])->withInput();
         }
         
     }
@@ -91,6 +93,14 @@ class RelacionesController extends Controller
             return redirect()->route('relaciones.crear.prodCat')->withErrors(['No Encontrado' => 'Categoría o Producto, no encontrado'])->withInput();
         }
     
+    }
+
+    public static function prodActualizar(Producto $producto){
+        if($producto->Prod_Estado == 0){
+            Prod_Suc::where('ProdId', $producto->Prod_Id)->update(['EstadoId' => 2, 'Stock' => 0]);
+        } else {
+            Prod_Suc::where('ProdId', $producto->Prod_Id)->update(['EstadoId' => 1, 'Stock' => 5]);
+        }
     }
 
 }

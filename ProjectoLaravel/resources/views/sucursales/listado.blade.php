@@ -41,7 +41,7 @@
                             <td>{{ $sucursal->Suc_Direccion }}</td>
                             <td>
                                 <div class="listado__iconos">
-                                    <a href="#" class="listado__enlace"><i class="listado__edicion fa fa-pencil-alt"></i></a>
+                                    <a href=" {{ url('sucursales/' . $sucursal->Suc_Id . "/edit") }} " class="listado__enlace"><i class="listado__edicion fa fa-pencil-alt"></i></a>
                                     <a href="#" class="listado__enlace listado__enlace--modificador"><i class="listado__edicion fa fa-trash"></i></a>
                                 </div>
                             </td>

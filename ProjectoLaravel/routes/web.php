@@ -29,7 +29,9 @@ Route::post('/login/verificar', [LoginController::class, 'loginVerificar'])->nam
 // Ruta para productos
 Route::resource('/productos', 'App\Http\Controllers\ProductosController');
 Route::get('/productos/realizar/busqueda', [ProductosController::class, 'realizarBusqueda'])->name('productos.realizar.busqueda');
-Route::post('/productos/verificar/busqueda', [ProductosController::class, 'verificarBusqueda'])->name('productos.verificar.busqueda');                               
+Route::post('/productos/verificar/busqueda', [ProductosController::class, 'verificarBusqueda'])->name('productos.verificar.busqueda');
+Route::get('/productos/actualizar/estado', [ProductosController::class, 'actualizarEstado'])->name('productos.actualizar.estado');
+Route::post('/productos/actualizar/verificar', [ProductosController::class, 'actualizarVerificar'])->name('productos.actualizar.verificar');
 
 // Ruta para sucursales
 Route::resource('/sucursales', 'App\Http\Controllers\SucursalesController');

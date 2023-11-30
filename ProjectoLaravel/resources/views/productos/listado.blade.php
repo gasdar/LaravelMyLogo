@@ -12,6 +12,7 @@
                 <a href="{{ url('productos') }}" class="admin__link">Listados de Productos</a>
                 <a href="{{ url('productos/create')}}" class="admin__link">Nuevo Producto</a>
                 <a href="{{ url('productos/realizar/busqueda') }}" class="admin__link">Buscar Productos</a>
+                <a href="{{ url('productos/actualizar/estado') }}" class="admin__link">Actualizar Estados de Productos por Sucursal</a>
                 <a href="{{ url('relaciones/producto/sucursal') }}" class="admin__link">Listado Sucursal & Productos</a>
                 <a href="{{ url('relaciones/producto/categoria') }}" class="admin__link">Listado Categorias & Productos</a>
                 <a href="{{ url('relaciones/crear/prodSuc') }}" class="admin__link">Crear Relación Sucursales & Productos</a>
@@ -48,7 +49,7 @@
                             <td>{{ $producto->Prod_Estado }}</td>
                             <td>
                                 <div class="listado__iconos">
-                                    <a href={{ url("productos/" . $producto->Prod_Id . "/edit")}} class="listado__enlace"><i class="listado__edicion fa fa-pencil-alt"></i></a>
+                                    <a href="{{ url("productos/" . $producto->Prod_Id . "/edit") }}" class="listado__enlace"><i class="listado__edicion fa fa-pencil-alt"></i></a>
                                     <a href="#" class="listado__enlace listado__enlace--modificador"><i class="listado__edicion fa fa-trash"></i></a>
                                 </div>
                             </td>

@@ -23,28 +23,20 @@
 
         <div class="solicitud">
 
-            <h2 class="solicitud__heading text-center degradado-admin">Crear Producto</h2>
+            <h2 class="solicitud__heading text-center degradado-admin">Actualizar Estados de Productos en Sucursal</h2>
 
-            <form action="{{ url('productos') }}" method="post" class="solicitud__formulario">
+            <form action="{{ url('productos/actualizar/verificar') }}" method="post" class="solicitud__formulario">
                 @csrf
                 <div class="solicitud__campo">
-                    <label for="nombre" class="solicitud__label form-label">Nombre:</label>
-                    <input type="text" class="solicitud__input form-control" id="nombre" name="nombre" value="{{ old('nombre') }}">
+                    <label for="codigoSuc" class="solicitud__label form-label">Código Sucursal:</label>
+                    <input type="number" class="solicitud__input form-control" id="codigoSuc" name="codigoSuc" value="{{ old('codigoSuc' )}}">
                 </div>
                 <div class="solicitud__campo">
-                    <label for="descripcion" class="solicitud__label form-label">Descripción:</label>
-                    <input type="text" class="solicitud__input form-control" id="descripcion" name="descripcion" value="{{ old('descripcion') }}">
-                </div>
-                <div class="solicitud__campo">
-                    <label for="precio" class="solicitud__label form-label">Precio:</label>
-                    <input type="number" class="solicitud__input form-control" id="precio" name="precio" value="{{ old('precio') }}">
-                </div>
-                <div class="solicitud__campo">
-                    <label for="estado" class="solicitud__label form-label">Estado:</label>
-                    <input type="number" class="solicitud__input form-control" id="estado" name="estado" value="{{ old('estado') }}">
+                    <label for="codigoEstado" class="solicitud__label form-label">Código Estado a Actualizar:</label>
+                    <input type="number" class="solicitud__input form-control" id="codigoEstado" name="codigoEstado" value="{{ old('codigoEstado') }}">
                 </div>
                 <div class="solicitud__boton">
-                    <button type="submit" class="solicitud__btn">Registrar Producto</button>
+                    <button type="submit" class="solicitud__btn">Actualizar Producto</button>
                 </div>
 
                 @if($errors->any())

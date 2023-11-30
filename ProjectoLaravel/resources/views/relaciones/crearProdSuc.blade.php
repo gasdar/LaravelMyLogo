@@ -31,7 +31,11 @@
                     <input type="number" class="solicitud__input form-control" id="codigoProd" name="codigoProd" value="{{ old('codigoProd') }}">
                 </div>
                 <div class="solicitud__campo">
-                    <label for="stock" class="solicitud__label form-label">Stock: </label>
+                    <label for="codigoEstado" class="solicitud__label form-label">Código de Estado:</label>
+                    <input type="number" class="solicitud__input form-control" id="codigoEstado" name="codigoEstado" value="{{ old('codigoEstado') }}">
+                </div>
+                <div class="solicitud__campo">
+                    <label for="stock" class="solicitud__label form-label">Stock:</label>
                     <input type="number" class="solicitud__input form-control" id="stock" name="stock" value="{{ old('stock') }}">
                 </div>
                 <div class="solicitud__boton">

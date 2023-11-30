@@ -70,4 +70,21 @@ class SucursalesController extends Controller
 
     }
 
+    public function edit($sucursales) {
+        $sucursal = Sucursal::find($sucursales);
+        return view('sucursales.editar', ['sucursal' => $sucursal]);
+    }
+
+    public function update($sucursal, Request $request) {
+        
+        $this->validate($request, [
+            'region' => 'required|min:3|max:50',
+            'direccion' => 'required|min:3|max:50'
+        ]);
+
+        Sucursal::where('Suc_Id', $sucursal)->update(['Suc_Region' => $request->region, 'Suc_Direccion' => $request->direccion]);
+
+        return redirect()->route('sucursales.index');
+    }
+
 } // Fin de Clase

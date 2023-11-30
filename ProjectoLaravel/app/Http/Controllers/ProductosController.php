@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Producto;
+use App\Models\Sucursal;
 use App\Models\Prod_Suc;
+use App\Models\Estado;
 
 class ProductosController extends Controller
 {
@@ -25,8 +27,8 @@ class ProductosController extends Controller
         $this->validate($request, [
             'nombre' => 'required|min:3|max:50',
             'descripcion' => 'required|min:3|max:50',
-            'precio' => 'required|integer|min:1',
-            'estado' => 'required|integer|min:1'
+            'precio' => 'required|number|min:0',
+            'estado' => 'required|integer|min:1|max:2'
         ]);
 
         $producto = new Producto();
@@ -113,16 +115,57 @@ class ProductosController extends Controller
 
     public function update($producto, Request $request){
 
-        Producto::where('Prod_Id' , $producto)->
+        $this->validate($request, [
+            'nombre' => 'required|min:3|max:50',
+            'descripcion' => 'required|min:3|max:50',
+            'precio' => 'required|numeric|min:0',
+            'estado' => 'required|integer|min:0|max:1'
+        ]);
+
+        Producto::where('Prod_Id', $producto)->
         update([ 
             'Prod_Nombre' => $request->nombre,
             'Prod_Descripcion' => $request->descripcion,
             'Prod_Precio'=> $request->precio,
             'Prod_Estado'=> $request->estado
-
         ]);
-        $productos = Producto::get();
-        return view('productos.listado')->with('productos', $productos);
+
+        $prodActualizado = Producto::where('Prod_Id', $producto)->first();
+
+        RelacionesController::prodActualizar($prodActualizado);
+
+        return redirect()->route('relaciones.producto.sucursal');
+    }
+
+    public function actualizarEstado() {
+        return view('productos.actualizarEstados');
+    }
+
+    public function actualizarVerificar(Request $request) {
+        
+        $this->validate($request, [
+            'codigoSuc' => 'required|integer|min:1',
+            'codigoEstado' => 'required|integer|min:1|max:2',
+        ]);
+
+        $estado = Estado::where('Estado_Id', $request->codigoEstado)->first();
+        $sucursal = Sucursal::where('Suc_Id', $request->codigoSuc)->first();
+
+        if($estado && $sucursal) {
+
+            if($estado->Estado_Nombre == "Deshabilitado") {
+                Prod_Suc::where('SucId', $request->codigoSuc)->update(['EstadoId' => $request->codigoEstado, 'Stock' => 0]);
+            } else {
+                Prod_Suc::where('SucId', $request->codigoSuc)->update(['EstadoId' => $request->codigoEstado, 'Stock' => 5]);
+            }
+
+            $prodSuc = Prod_Suc::get();
+            return view('relaciones.productoSucursal', ['prodSuc' => $prodSuc]);
+        } else {
+            return redirect()->route('productos.actualizar.estado')->withErrors(['NoEncontrado' => 'Sucursal o Estado, no encontrado'])->withInput();
+        }
+        
+
     }
 
 }
