@@ -24,4 +24,8 @@ class Prod_Suc extends Model
         return $this->belongsTo(Sucursal::class, "SucId");
     }
 
+    public function estado() {
+        return $this->belongsTo(Estado::class, "EstadoId");
+    }
+
 }

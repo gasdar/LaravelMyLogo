@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_productos', function (Blueprint $table) {
-            $table->increments('Prod_Id');
-            $table->string('Prod_Nombre', 50);
-            $table->string('Prod_Descripcion', 200);
-            $table->decimal('Prod_Precio', $precision = 10, $scale = 2);
-            $table->char('Prod_Estado', 1);
+        Schema::create('tbl_estados', function (Blueprint $table) {
+            $table->increments('Estado_Id');
+            $table->string('Estado_Nombre', 50);
 
             $table->timestamps();
         });
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_productos');
+        Schema::dropIfExists('tbl_estados');
     }
 };

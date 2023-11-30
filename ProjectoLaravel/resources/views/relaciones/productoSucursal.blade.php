@@ -28,6 +28,7 @@
                         <tr class="text-center">
                             <th>Sucursal</th>
                             <th>Producto</th>
+                            <th>Estado</th>
                             <th>Stock</th>
                             <th>Ajustes<i class="listado__wrench fa fa-wrench"></i></th>
                         </tr>
@@ -37,6 +38,7 @@
                         <tr>
                             <td>{{ $relacion->sucursal->Suc_Region }}, {{$relacion->sucursal->Suc_Direccion}}</td>
                             <td>{{ $relacion->producto->Prod_Nombre }}, ({{$relacion->producto->Prod_Precio}})</td>
+                            <td>{{ $relacion->estado->Estado_Nombre }}</td>
                             <td>{{ $relacion->Stock }}</td>
                             <td>
                                 <div class="listado__iconos">

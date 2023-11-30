@@ -13,9 +13,9 @@ class InsertarAdministradores extends Seeder
     public function run(): void
     {
         \DB::table('tbl_administradores')->insert(array(
-            ['Admin_Nombre' => 'Profesor', 'Admin_Password' => '12345'],
-            ['Admin_Nombre' => 'Mauricio', 'Admin_Password' => '12345'],
-            ['Admin_Nombre' => 'Eliu', 'Admin_Password' => '12345']
+            ['Admin_Nombre' => 'Profesor', 'Admin_Clave' => '12345'],
+            ['Admin_Nombre' => 'Mauricio', 'Admin_Clave' => '12345'],
+            ['Admin_Nombre' => 'Eliu', 'Admin_Clave' => '12345']
         ));
     }
 }

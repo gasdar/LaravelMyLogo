@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('tbl_prod_suc', function (Blueprint $table) {
             $table->unsignedInteger('ProdId');
             $table->unsignedInteger('SucId');
+            $table->unsignedInteger('EstadoId');
             $table->unsignedSmallInteger('Stock');
             $table->primary(['ProdId', 'SucId']);
 
             // Relaciones
             $table->foreign('ProdId')->references('Prod_Id')->on('tbl_productos');
             $table->foreign('SucId')->references('Suc_Id')->on('tbl_sucursales');
+            $table->foreign('EstadoId')->references('Estado_Id')->on('tbl_estados');
 
             $table->timestamps();
         });

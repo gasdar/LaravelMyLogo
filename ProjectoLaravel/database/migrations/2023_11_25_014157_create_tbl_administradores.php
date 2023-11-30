@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('tbl_administradores', function (Blueprint $table) {
             $table->increments('Admin_Id');
             $table->string('Admin_Nombre', 50);
-            $table->string('Admin_Password', 50);
-
+            $table->string('Admin_Clave', 50);
 
             $table->timestamps();
         });

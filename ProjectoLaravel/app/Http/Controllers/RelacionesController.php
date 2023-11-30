@@ -13,7 +13,7 @@ class RelacionesController extends Controller
 {
  
     public function prodSuc(){
-        $prodSuc = Prod_Suc::get()->load('sucursal')->load('producto');
+        $prodSuc = Prod_Suc::get()->load('sucursal')->load('producto')->load('estado');
         return view('relaciones.productoSucursal', ["prodSuc" => $prodSuc]);
     }
 

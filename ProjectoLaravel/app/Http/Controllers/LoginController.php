@@ -19,7 +19,7 @@ class LoginController extends Controller
             "contrasena" => "required|max:50"
         ]);
 
-        $administrador = Administrador::where('Admin_Nombre', $request->nombre)->where('Admin_Password', $request->contrasena)->first();
+        $administrador = Administrador::where('Admin_Nombre', $request->nombre)->where('Admin_Clave', $request->contrasena)->first();
 
         if($administrador){
             return view('login.administrador')->with('administrador', $administrador);

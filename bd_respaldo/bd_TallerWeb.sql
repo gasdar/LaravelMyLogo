@@ -14,17 +14,25 @@ CREATE TABLE IF NOT EXISTS `tbl_productos`(
 	Prod_Id INT UNSIGNED AUTO_INCREMENT NOT NULL,
 	Prod_Nombre VARCHAR(50) NOT NULL COMMENT 'Nombre de Producto',
 	Prod_Descripcion VARCHAR(200) NOT NULL DEFAULT '' COMMENT 'Descripción de Producto',
-	Prod_precio DECIMAL(10, 2) NOT NULL DEFAULT '0.00' COMMENT 'Precio del Producto',
+	Prod_Precio DECIMAL(10, 2) NOT NULL DEFAULT '0.00' COMMENT 'Precio del Producto',
+    Prod_Estado CHAR(1) NOT NULL DEFAULT '1' COMMENT 'Estado de producto',
 	PRIMARY KEY (Prod_Id)
+) ENGINE=INNODB CHARSET=UTF8;
+
+CREATE TABLE IF NOT EXISTS `tbl_estados`(
+	Estado_Id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+    Estado_Nombre VARCHAR(50) NOT NULL DEFAULT '' COMMENT 'Nombre de Estado'
 ) ENGINE=INNODB CHARSET=UTF8;
 
 CREATE TABLE IF NOT EXISTS `tbl_prod_suc`(
 	ProdId INT UNSIGNED NOT NULL,
 	SucId INT UNSIGNED NOT NULL,
+    EstadoId INT UNSIGNED NOT NULL,
 	Stock SMALLINT UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Stock de un producto en una sucursal determinada',
 	PRIMARY KEY(ProdId, SucId),
 	CONSTRAINT fk1_producto_sucursal FOREIGN KEY (ProdId) REFERENCES tbl_productos(Prod_Id),
-	CONSTRAINT fk2_sucursal_producto FOREIGN KEY (SucId) REFERENCES tbl_sucursales(Suc_Id)
+	CONSTRAINT fk2_sucursal_producto FOREIGN KEY (SucId) REFERENCES tbl_sucursales(Suc_Id),
+    CONSTRAINT fk3_estado_prodSuc FOREIGN KEY (EstadoId) REFERENCES tbl_estados(Estado_Id)
 ) ENGINE=INNODB CHARSET=UTF8;
 
 CREATE TABLE IF NOT EXISTS `tbl_categorias`(
