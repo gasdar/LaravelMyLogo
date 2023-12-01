@@ -137,6 +137,20 @@ class ProductosController extends Controller
         return redirect()->route('relaciones.producto.sucursal');
     }
 
+    public function eliminar($producto){
+        
+        $prod = Producto::where('Prod_Id', $producto)->first();
+        return view('productos.eliminar', ['prod' => $prod]);
+    }
+
+    public function destroy($producto){
+        $prod = Producto::find($producto);
+        RelacionesController::prodDepuracion($prod);
+        $prod->delete();
+        $productos = Producto::get();
+        return redirect()->route('productos.index');
+    }
+
     public function actualizarEstado() {
         return view('productos.actualizarEstados');
     }

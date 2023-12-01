@@ -103,4 +103,15 @@ class RelacionesController extends Controller
         }
     }
 
+    public static function prodDepuracion($Prod_Id){
+        $prodSuc =  Prod_Suc::where('ProdId', $Prod_Id)->get();
+
+        foreach($prodSuc as $relacion){
+            $relacion->delete();
+        }
+
+
+
+    }
+
 }

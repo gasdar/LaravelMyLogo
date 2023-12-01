@@ -32,6 +32,7 @@ Route::get('/productos/realizar/busqueda', [ProductosController::class, 'realiza
 Route::post('/productos/verificar/busqueda', [ProductosController::class, 'verificarBusqueda'])->name('productos.verificar.busqueda');
 Route::get('/productos/actualizar/estado', [ProductosController::class, 'actualizarEstado'])->name('productos.actualizar.estado');
 Route::post('/productos/actualizar/verificar', [ProductosController::class, 'actualizarVerificar'])->name('productos.actualizar.verificar');
+Route::get('/productos/{producto}/eliminar', [ProductosController::class, 'eliminar'])->name('productos.eliminar');
 
 // Ruta para sucursales
 Route::resource('/sucursales', 'App\Http\Controllers\SucursalesController');
