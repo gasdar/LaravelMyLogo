@@ -118,7 +118,7 @@ class ProductosController extends Controller
         $this->validate($request, [
             'nombre' => 'required|min:3|max:50',
             'descripcion' => 'required|min:3|max:50',
-            'precio' => 'required|numeric|min:0',
+            'precio' => 'required|integer|min:0',
             'estado' => 'required|integer|min:0|max:1'
         ]);
 

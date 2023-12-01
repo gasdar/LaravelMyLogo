@@ -35,6 +35,7 @@
                             <th>Nombre</th>
                             <th>Descripción</th>
                             <th>Precio</th>
+                            <th>Estado</th>
                             {{-- <th>Sucursal</th> --}}
                             <th>Ajustes<i class="listado__wrench fa fa-wrench"></i></th>
                         </tr>
@@ -46,6 +47,7 @@
                             <td>{{ $producto->Prod_Nombre }}</td>
                             <td>{{ $producto->Prod_Descripcion }}</td>
                             <td>{{ $producto->Prod_Precio }}</td>
+                            <td>{{ $producto->Prod_Estado }}</td>
                             <td>
                                 <div class="listado__iconos">
                                     <a href="{{ url("productos/" . $producto->Prod_Id . "/edit") }}" class="listado__enlace"><i class="listado__edicion fa fa-pencil-alt"></i></a>
