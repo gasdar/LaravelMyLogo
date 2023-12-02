@@ -87,4 +87,17 @@ class SucursalesController extends Controller
         return redirect()->route('sucursales.index');
     }
 
+    public function eliminar($sucursal){
+        $suc = Sucursal::find($sucursal);
+        return view('sucursales.eliminar', ['suc' => $suc]);
+    }
+
+    public function destroy($sucursal) {
+        $suc = Sucursal::find($sucursal);
+        $suc->prodSuc()->delete();
+        $suc->delete();
+
+        return redirect()->route('sucursales.index');
+    }
+
 } // Fin de Clase

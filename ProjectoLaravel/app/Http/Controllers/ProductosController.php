@@ -26,8 +26,8 @@ class ProductosController extends Controller
 
         $this->validate($request, [
             'nombre' => 'required|min:3|max:50',
-            'descripcion' => 'required|min:3|max:50',
-            'precio' => 'required|number|min:0',
+            'descripcion' => 'required|min:3|max:200',
+            'precio' => 'required|numeric|min:0',
             'estado' => 'required|integer|min:1|max:2'
         ]);
 
@@ -117,8 +117,8 @@ class ProductosController extends Controller
 
         $this->validate($request, [
             'nombre' => 'required|min:3|max:50',
-            'descripcion' => 'required|min:3|max:50',
-            'precio' => 'required|integer|min:0',
+            'descripcion' => 'required|min:3|max:200',
+            'precio' => 'required|numeric|min:0',
             'estado' => 'required|integer|min:0|max:1'
         ]);
 
@@ -130,24 +130,29 @@ class ProductosController extends Controller
             'Prod_Estado'=> $request->estado
         ]);
 
-        $prodActualizado = Producto::where('Prod_Id', $producto)->first();
+        // Se encuentra el producto actualizado
+        $prodActualizado = Producto::find($producto);
 
+        // Se actualizan las relaciones del producto, si su estado a sufrido un cambio.
         RelacionesController::prodActualizar($prodActualizado);
 
-        return redirect()->route('relaciones.producto.sucursal');
+        // Se dirige al listado de productos, para ver los posibles cambios
+        return redirect()->route('productos.index');
     }
 
     public function eliminar($producto){
-        
-        $prod = Producto::where('Prod_Id', $producto)->first();
+        $prod = Producto::find($producto);
         return view('productos.eliminar', ['prod' => $prod]);
     }
 
+    // RelacionesController::prodDepuracion($prod);
+
     public function destroy($producto){
         $prod = Producto::find($producto);
-        RelacionesController::prodDepuracion($prod);
+        $prod->prodSuc()->delete();
+        $prod->prodCat()->delete();
         $prod->delete();
-        $productos = Producto::get();
+        
         return redirect()->route('productos.index');
     }
 
@@ -173,8 +178,7 @@ class ProductosController extends Controller
                 Prod_Suc::where('SucId', $request->codigoSuc)->update(['EstadoId' => $request->codigoEstado, 'Stock' => 5]);
             }
 
-            $prodSuc = Prod_Suc::get();
-            return view('relaciones.productoSucursal', ['prodSuc' => $prodSuc]);
+            return redirect()->route('relaciones.producto.sucursal');
         } else {
             return redirect()->route('productos.actualizar.estado')->withErrors(['NoEncontrado' => 'Sucursal o Estado, no encontrado'])->withInput();
         }

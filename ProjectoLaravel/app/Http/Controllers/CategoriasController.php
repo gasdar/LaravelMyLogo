@@ -68,4 +68,36 @@ class CategoriasController extends Controller
 
     }
 
+    public function edit($categorias) {
+        $categoria = Categoria::find($categorias);
+        return view('categorias.editar', ['categoria' => $categoria]);
+    }
+
+    public function update($categorias, Request $request) {
+
+        $this->validate($request, [
+            'nombre' => 'required|min:3|max:50'
+        ]);
+
+        $categoria = Categoria::find($categorias);
+        $categoria->Cat_Nombre = $request->nombre;
+        $categoria->save();
+
+        return redirect()->route('categorias.index');
+
+    }
+
+    public function eliminar($categorias) {
+        $categoria = Categoria::find($categorias);
+        return view('categorias.eliminar', ['categoria' => $categoria]);
+    }
+
+    public function destroy($categorias) {
+        $categoria = Categoria::find($categorias);
+        $categoria->prodCat()->delete();
+        $categoria->delete();
+
+        return redirect()->route('categorias.index');
+    }
+
 }

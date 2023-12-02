@@ -35,6 +35,7 @@
                             <th>Nombre</th>
                             <th>Descripción</th>
                             <th>Precio</th>
+                            <th>Estado</th>
                             <th>Sucursal Relacionada</th>
                             <th>Stock</th>
                             {{-- <th>Sucursal</th> --}}
@@ -48,12 +49,13 @@
                             <td>{{ $relacion->producto->Prod_Nombre }}</td>
                             <td>{{ $relacion->producto->Prod_Descripcion }}</td>
                             <td>{{ $relacion->producto->Prod_Precio }}</td>
+                            <td>{{ $relacion->producto->Prod_Estado }}</td>
                             <td>{{ $relacion->sucursal->Suc_Region }}, {{ $relacion->sucursal->Suc_Direccion }} (código: {{ $relacion->sucursal->Suc_Id }})</td>
                             <td>{{ $relacion->Stock }}</td>
                             <td>
                                 <div class="listado__iconos">
                                     <a href="{{ url("productos/" . $relacion->producto->Prod_Id . "/edit") }}" class="listado__enlace"><i class="listado__edicion fa fa-pencil-alt"></i></a>
-                                    <a href="#" class="listado__enlace listado__enlace--modificador"><i class="listado__edicion fa fa-trash"></i></a>
+                                    <a href="{{ url("productos/" . $relacion->producto->Prod_Id . "/eliminar")}}" class="listado__enlace listado__enlace--modificador"><i class="listado__edicion fa fa-trash"></i></a>
                                 </div>
                             </td>
                         </tr>

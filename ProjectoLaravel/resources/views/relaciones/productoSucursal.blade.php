@@ -42,8 +42,8 @@
                             <td>{{ $relacion->Stock }}</td>
                             <td>
                                 <div class="listado__iconos">
-                                    <a href="#" class="listado__enlace"><i class="listado__edicion fa fa-pencil-alt"></i></a>
-                                    <a href="#" class="listado__enlace listado__enlace--modificador"><i class="listado__edicion fa fa-trash"></i></a>
+                                    <a href="{{ url('relaciones/edit/prodSuc/' . $relacion->producto->Prod_Id . '/' . $relacion->sucursal->Suc_Id) }}" class="listado__enlace"><i class="listado__edicion fa fa-pencil-alt"></i></a>
+                                    <a href="{{ url('relaciones/eliminar/prodSuc/' . $relacion->producto->Prod_Id . '/' . $relacion->sucursal->Suc_Id) }}" class="listado__enlace listado__enlace--modificador"><i class="listado__edicion fa fa-trash"></i></a>
                                 </div>
                             </td>
                         </tr>

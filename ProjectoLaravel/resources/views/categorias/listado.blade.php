@@ -39,8 +39,8 @@
                             <td>{{ $categoria->Cat_Nombre }}</td>
                             <td>
                                 <div class="listado__iconos">
-                                    <a href="#" class="listado__enlace"><i class="listado__edicion fa fa-pencil-alt"></i></a>
-                                    <a href="#" class="listado__enlace listado__enlace--modificador"><i class="listado__edicion fa fa-trash"></i></a>
+                                    <a href="{{ url('categorias/' . $categoria->Cat_Id . '/edit') }}" class="listado__enlace"><i class="listado__edicion fa fa-pencil-alt"></i></a>
+                                    <a href="{{ url('categorias/' . $categoria->Cat_Id . '/eliminar') }}" class="listado__enlace listado__enlace--modificador"><i class="listado__edicion fa fa-trash"></i></a>
                                 </div>
                             </td>
                         </tr>

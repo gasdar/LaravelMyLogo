@@ -323,6 +323,7 @@ img {
 }
 .solicitud__boton {
     display: flex;
+    column-gap: 3rem;
     justify-content: center;
 }
 .solicitud__btn {
@@ -339,11 +340,21 @@ img {
     background-color: var(--colorPrimario);
     color: var(--colorSecundario);
 }
+.solicitud__btn--modificador {
+    background-color: rgb(124, 30, 30);
+}
+.solicitud__btn--modificador:hover {
+    background-color: rgb(220, 178, 178);
+    color: rgb(124, 30, 30);
+}
 .solicitud__error {
     margin: 2rem 0;
 }
 .solicitud__lista {
     margin: 0;
+}
+.solicitud__span {
+    font-weight: 700;
 }
 
 /* INICIO */

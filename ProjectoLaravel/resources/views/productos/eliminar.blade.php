@@ -23,34 +23,21 @@
 
         <div class="solicitud">
 
-            <h2 class="solicitud__heading text-center degradado-admin ">Confirmar Eliminación De Producto</h2>
+            <h2 class="solicitud__heading text-center degradado-admin ">¿Esta seguro que desea eliminar el siguiente producto?</h2>
 
             <form action="{{ url('productos/' . $prod->Prod_Id) }}" method="post" class="solicitud__formulario">
                 @csrf
                 @method('DELETE')
                 
                 <div class="solicitud__campo">
-                    <p>
-                    {{$prod->Prod_Nombre}}
-                    </p>
+                    <p><span class="solicitud__span">Nombre:</span> {{$prod->Prod_Nombre}}</p>
+                    <p><span class="solicitud__span">Descripción:</span> {{$prod->Prod_Descripcion}}</p>
+                    <p><span class="solicitud__span">Precio:</span> ${{$prod->Prod_Precio}}</p>
+                    <p><span class="solicitud__span">Estado:</span> {{$prod->Prod_Estado}}</p>
                 </div>
-                <div class="solicitud__campo">
-                    <p>
-                        {{$prod->Prod_Descripcion}}
-                        </p>
-                </div>
-                <div class="solicitud__campo">
-                    <p>
-                        {{$prod->Prod_Precio}}
-                        </p>
-                </div>
-                <div class="solicitud__campo">
-                    <p>
-                        {{$prod->Prod_Estado}}
-                        </p>
-                </div>
+
                 <div class="solicitud__boton">
-                    <button type="submit" class="solicitud__btn">Eliminar Producto</button>
+                    <button type="submit" class="solicitud__btn solicitud__btn--modificador">Eliminar Producto</button>
                     <a type="submit" href="{{ url('productos')}}" class="solicitud__btn">Volver</a>
                 </div>
             </form>

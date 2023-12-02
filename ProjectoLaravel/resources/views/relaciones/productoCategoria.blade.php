@@ -38,8 +38,7 @@
                             <td>{{ $relacion->producto->Prod_Nombre }}, ({{$relacion->producto->Prod_Precio}})</td>
                             <td>
                                 <div class="listado__iconos">
-                                    <a href="#" class="listado__enlace"><i class="listado__edicion fa fa-pencil-alt"></i></a>
-                                    <a href="#" class="listado__enlace listado__enlace--modificador"><i class="listado__edicion fa fa-trash"></i></a>
+                                    <a href="{{ url('relaciones/eliminar/prodCat/' . $relacion->producto->Prod_Id . '/' . $relacion->categoria->Cat_Id) }}" class="listado__enlace listado__enlace--modificador"><i class="listado__edicion fa fa-trash"></i></a>
                                 </div>
                             </td>
                         </tr>

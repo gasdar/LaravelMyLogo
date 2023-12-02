@@ -1,6 +1,6 @@
 @extends('layouts.master-admin')
 
-@section('title', 'Producto Registro')
+@section('title', 'Actualizar Estado Producto')
 
 @section('main-vista')
     <main class="admin">

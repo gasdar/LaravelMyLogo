@@ -103,15 +103,50 @@ class RelacionesController extends Controller
         }
     }
 
-    public static function prodDepuracion($Prod_Id){
-        $prodSuc =  Prod_Suc::where('ProdId', $Prod_Id)->get();
+    public function eliminarProdCat($producto, $categoria) {
+        $prodCat = Prod_Cat::with(['producto', 'categoria'])
+        ->where('ProdId', $producto)
+        ->where('CatId', $categoria)
+        ->first();
+        return view('relaciones.eliminarProdCat', ['prodCat' => $prodCat]);
+    }
 
-        foreach($prodSuc as $relacion){
-            $relacion->delete();
-        }
+    public function destroyProdCat($producto, $categoria) {
+        Prod_Cat::where('ProdId', $producto)->where('CatId', $categoria)->delete();
 
+        return redirect()->route('relaciones.producto.categoria');
+    }
 
+    public function editProdSuc($producto, $sucursal) {
+        $prodSuc = Prod_Suc::with(['producto', 'sucursal'])->where('ProdId', $producto)->where('SucId', $sucursal)->first();
+        return view('relaciones.editarProdSuc', ['prodSuc' => $prodSuc]);
+    }
 
+    public function updateProdSuc($producto, $sucursal, Request $request) {
+
+        $this->validate($request, [
+            'estado' => 'required|integer|min:1|max:2',
+            'stock' => 'required|integer|min:0'
+        ]);
+
+        $prodSuc = Prod_Suc::where('ProdId', $producto)->where('SucId', $sucursal)
+        ->update([
+            'EstadoId' => $request->estado,
+            'Stock' => $request->stock
+        ]);
+
+        return redirect()->route('relaciones.producto.sucursal');
+    }
+
+    public function eliminarProdSuc($producto, $sucursal) {
+        $prodSuc = Prod_Suc::with(['producto', 'sucursal', 'estado'])->where('ProdId', $producto)->where('SucId', $sucursal)->first();
+        return view('relaciones.eliminarProdSuc', ['prodSuc' => $prodSuc]);
+    }
+
+    public function destroyProdSuc($producto, $sucursal) {
+        Prod_Suc::where('ProdId', $producto)->where('SucId', $sucursal)->delete();
+
+        return redirect()->route('relaciones.producto.sucursal');
     }
 
 }

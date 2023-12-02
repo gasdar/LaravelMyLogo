@@ -38,19 +38,27 @@ Route::get('/productos/{producto}/eliminar', [ProductosController::class, 'elimi
 Route::resource('/sucursales', 'App\Http\Controllers\SucursalesController');
 Route::get('/sucursales/realizar/busqueda', [SucursalesController::class, 'realizarBusqueda'])->name('sucursales.realizar.busqueda');
 Route::post('/sucursales/verificar/busqueda', [SucursalesController::class, 'verificarBusqueda'])->name('sucursales.verificar.busqueda');
+Route::get('/sucursales/{sucursal}/eliminar', [SucursalesController::class, 'eliminar'])->name('sucursales.eliminar');
 
 // Ruta para categorias
 Route::resource('/categorias', 'App\Http\Controllers\CategoriasController');
 Route::get('/categorias/realizar/busqueda', [CategoriasController::class, 'realizarBusqueda'])->name('categorias.realizar.busqueda');
 Route::post('/categorias/verificar/busqueda', [CategoriasController::class, 'verificarBusqueda'])->name('categorias.verificar.busqueda');
+Route::get('/categorias/{categoria}/eliminar', [CategoriasController::class, 'eliminar'])->name('categorias.eliminar');
 
 // Ruta relación sucursal & producto
 Route::get('/relaciones/producto/sucursal', [RelacionesController::class, 'prodSuc'])->name('relaciones.producto.sucursal');
 Route::get('/relaciones/crear/prodSuc', [RelacionesController::class, 'crearProdSuc'])->name('relaciones.crear.prodSuc');
 Route::post('/relaciones/verificar/prodSuc', [RelacionesController::class, 'verificarProdSuc'])->name('relaciones.verificar.prodSuc');
+Route::get('/relaciones/edit/prodSuc/{producto}/{sucursal}', [RelacionesController::class, 'editProdSuc'])->name('relaciones.edit.prodSuc');
+Route::put('/relaciones/update/prodSuc/{producto}/{sucursal}', [RelacionesController::class, 'updateProdSuc'])->name('relaciones.update.prodSuc');
+Route::get('/relaciones/eliminar/prodSuc/{producto}/{sucursal}', [RelacionesController::class, 'eliminarProdSuc'])->name('relaciones.eliminar.prodSuc');
+Route::delete('/relaciones/destroy/prodSuc/{producto}/{sucursal}', [RelacionesController::class, 'destroyProdSuc'])->name('relaciones.destroy.prodSuc');
 Route::get('/relaciones/producto/categoria', [RelacionesController::class, 'prodCat'])->name('relaciones.producto.categoria');
 Route::get('/relaciones/crear/prodCat', [RelacionesController::class, 'crearProdCat'])->name('relaciones.crear.prodCat');
-Route::post('/relaciones/verificar/prodCat', [RelacionesController::class, 'verificarProdCat'])->name('relaciones.verificar.prodCat');
+Route::get('/relaciones/eliminar/prodCat/{producto}/{categoria}', [RelacionesController::class, 'eliminarProdCat'])->name('relaciones.eliminar.prodCat');
+Route::delete('/relaciones/destroy/prodCat/{producto}/{categoria}', [RelacionesController::class, 'destroyProdCat'])->name('relaciones.destroy.prodCat');
+
 
 
 
