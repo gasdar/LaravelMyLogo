@@ -19,6 +19,7 @@ use App\Http\Controllers\ProductosController;
 |
 */
 
+Route::get('/', [InicioController::class, 'inicio'])->name('inicio');
 Route::get('/index', [InicioController::class, 'inicio'])->name('index');
 Route::get('/index/productos', [InicioController::class, 'inicioProductos'])->name('index.productos');
 Route::post('/index/agradecimiento', [InicioController::class, 'inicioFormulario'])->name('index.agradecimiento');

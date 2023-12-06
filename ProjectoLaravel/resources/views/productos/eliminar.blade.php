@@ -40,6 +40,17 @@
                     <button type="submit" class="solicitud__btn solicitud__btn--modificador">Eliminar Producto</button>
                     <a type="submit" href="{{ url('productos')}}" class="solicitud__btn">Volver</a>
                 </div>
+
+                @if($errors->any())
+                    <div class="solicitud__error alert alert-danger">
+                        <ul class="solicitud__lista">
+                            @foreach($errors->all() as $error)
+                                <li class="solicitud__listas">{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                
             </form>
         </div>
 

@@ -57,7 +57,7 @@ class ProductosController extends Controller
 
         if(!empty($request->codigoSuc)){
             if($request->codigoSuc < 1){
-                return redirect()->route('productos.realizar.busqueda')->withErrors(['Error#Sucursal' => 'El código de sucursal debe ser mayor a 0'])->withInput();
+                return redirect()->route('productos.realizar.busqueda')->withErrors(['ErrorSucursal' => 'El código de sucursal debe ser mayor a 0'])->withInput();
             }
         }
 
@@ -109,8 +109,14 @@ class ProductosController extends Controller
     }
 
     public function edit($productos){
-        $producto = Producto::find($productos); 
-        return view("productos.editar", ["producto" => $producto]);
+        $producto = Producto::find($productos);
+
+        if($producto) {
+            return view("productos.editar", ["producto" => $producto]);
+        } else {
+            return redirect()->route('productos.index')->withErrors(['NotFound' => 'El producto no fue encontrado']);
+        }
+        
     }
 
     public function update($producto, Request $request){
@@ -122,38 +128,54 @@ class ProductosController extends Controller
             'estado' => 'required|integer|min:0|max:1'
         ]);
 
-        Producto::where('Prod_Id', $producto)->
-        update([ 
-            'Prod_Nombre' => $request->nombre,
-            'Prod_Descripcion' => $request->descripcion,
-            'Prod_Precio'=> $request->precio,
-            'Prod_Estado'=> $request->estado
-        ]);
+        $prod = Producto::find($producto);
 
-        // Se encuentra el producto actualizado
-        $prodActualizado = Producto::find($producto);
+        if($prod){
+            Producto::where('Prod_Id', $producto)->
+            update([ 
+                'Prod_Nombre' => $request->nombre,
+                'Prod_Descripcion' => $request->descripcion,
+                'Prod_Precio'=> $request->precio,
+                'Prod_Estado'=> $request->estado
+            ]);
 
-        // Se actualizan las relaciones del producto, si su estado a sufrido un cambio.
-        RelacionesController::prodActualizar($prodActualizado);
+            // Se actualizan las relaciones del producto, si su estado a sufrido un cambio.
+            RelacionesController::prodActualizar($prod);
 
-        // Se dirige al listado de productos, para ver los posibles cambios
-        return redirect()->route('productos.index');
+            // Se dirige al listado de productos, para ver los posibles cambios
+            return redirect()->route('productos.index');
+        } else {
+            return redirect()->route('productos.index')->withErrors(['NotFound' => 'El producto no fue encontrado']);
+        }
+
     }
 
     public function eliminar($producto){
         $prod = Producto::find($producto);
-        return view('productos.eliminar', ['prod' => $prod]);
+
+        if($prod){
+            return view('productos.eliminar', ['prod' => $prod]);
+        } else {
+            return redirect()->route('productos.index')->withErrors(['NotFound' => 'El producto fue eliminado']);
+        }
+
     }
 
     // RelacionesController::prodDepuracion($prod);
 
     public function destroy($producto){
         $prod = Producto::find($producto);
-        $prod->prodSuc()->delete();
-        $prod->prodCat()->delete();
-        $prod->delete();
+
+        if($prod) {
+            $prod->prodSuc()->delete();
+            $prod->prodCat()->delete();
+            $prod->delete();
+            
+            return redirect()->route('productos.index');
+        } else {
+            return redirect()->route('productos.index')->withErrors(['NotFound' => 'El producto fue eliminado']);
+        }
         
-        return redirect()->route('productos.index');
     }
 
     public function actualizarEstado() {
@@ -183,7 +205,6 @@ class ProductosController extends Controller
             return redirect()->route('productos.actualizar.estado')->withErrors(['NoEncontrado' => 'Sucursal o Estado, no encontrado'])->withInput();
         }
         
-
     }
 
 }

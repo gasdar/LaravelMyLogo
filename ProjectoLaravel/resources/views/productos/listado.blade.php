@@ -23,6 +23,16 @@
 
         <div class="listado">
 
+            @if($errors->any())
+                <div class="solicitud__error alert alert-danger">
+                    <ul class="solicitud__lista">
+                        @foreach($errors->all() as $error)
+                            <li class="solicitud__listas">{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="listado__heading">
                 <h2 class="listado__header text-center">Registros de Productos</h2>
             </div>
